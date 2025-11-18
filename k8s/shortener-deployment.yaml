@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shortener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shortener
+  template:
+    metadata:
+      labels:
+        app: shortener
+    spec:
+      containers:
+      - name: shortener
+        image: ruhaoyang/shortener-service:1.0
+        ports:
+        - containerPort: 5001
+        resources:
+          limits:
+            cpu: "300m"
+            memory: "128Mi"
+          requests:
+            cpu: "150m"
+            memory: "64Mi"
